@@ -13,14 +13,12 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "asteroids");
 
-
-    for (int i = 0; i < menuSize; i++)
+    for (int i = 0; i < menuSize; i++)//dibujo rectangulos menu
     { 
-        menuRect[i].width = 270;
+        menuRect[i].width = 250;
         menuRect[i].height = 70;
         menuRect[i].x = 350;
         menuRect[i].y = 200 + menuRect[i].height * i + 50 * i;
-       
     }
 
     while (!WindowShouldClose())   
@@ -29,7 +27,7 @@ int main(void)
 
         for (int i = 0; i < menuSize; i++)
         {
-            if (CheckCollisionPointRec(mousePos, menuRect[i]))
+            if (CheckCollisionPointRec(mousePos, menuRect[i]))//si la pos del mouse esta dentro del rec
             {
                 menuMouseHover = i;
                 break;
@@ -38,14 +36,8 @@ int main(void)
                 menuMouseHover = -1;
         }
 
-        if (menuMouseHover >= 0 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        {
-            menuOptionSelected = menuMouseHover;
-        }
-
-    BeginDrawing();
-        ClearBackground(BLACK);
-        
+        BeginDrawing();
+        ClearBackground(BLACK);   
         if (showMenu)
         {
             for (int i = 0; i < menuSize; i++)
@@ -54,13 +46,30 @@ int main(void)
                 if (i == 0)
                 {
                      DrawText("PLAY", menuRect[i].x + 35, menuRect[i].y + 10, 50, LIGHTGRAY);
-                     
-                }
-                   
-                if(i == 1)
+                     if (menuMouseHover == 0 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                     {
+                         menuOptionSelected = 0;
+                         showMenu = false;
+                     }
+                }            
+                if (i == 1)
+                {
                     DrawText("CREDITS", menuRect[i].x, menuRect[i].y + 10, 50, LIGHTGRAY);
+                    if (menuMouseHover == 1 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                    {
+                        menuOptionSelected = 1;
+                        showMenu = false;
+                    }
+                }
                 if (i == 2)
+                {
                     DrawText("EXIT", menuRect[i].x + 35, menuRect[i].y + 10, 50, LIGHTGRAY);
+                    if (menuMouseHover == 2 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                    {
+                        menuOptionSelected = 2;
+                        showMenu = false;
+                    }
+                }
             }
         }
         else
@@ -85,8 +94,6 @@ int main(void)
                 break;
             }
         }
-        
-
         EndDrawing();
     }
     CloseWindow();       
