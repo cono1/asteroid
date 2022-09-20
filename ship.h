@@ -2,3 +2,4 @@
 
 void initShip();
 void drawShip();
+void moveShip();

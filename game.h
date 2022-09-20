@@ -4,8 +4,3 @@ const int screenHeight = 768;
 void showMenu();
 void initShip();
 
-
-
-
-
-
