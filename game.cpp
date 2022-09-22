@@ -12,6 +12,7 @@ Rectangle menuRect[menuSize];
 
 void showMenu()
 {
+
     initShip();
 
     for (int i = 0; i < menuSize; i++)//dibujo rectangulos menu
@@ -81,6 +82,7 @@ void showMenu()
                 DrawText("JUGANDO", 10, 10, 50, LIGHTGRAY);
                 shouldShowMenu = false;         
                 drawShip();
+                moveShip();
                 break;
             case 1:
                 DrawText("CREDITOS", 10, 10, 50, LIGHTGRAY);
