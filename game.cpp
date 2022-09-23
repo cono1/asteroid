@@ -79,9 +79,9 @@ void showMenu()
             switch (menuOptionSelected)
             {
             case 0:
-                DrawText("JUGANDO", 10, 10, 50, LIGHTGRAY);
                 shouldShowMenu = false;         
                 drawShip();
+                rotateShip();
                 moveShip();
                 break;
             case 1:
