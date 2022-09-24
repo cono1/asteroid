@@ -2,7 +2,6 @@
 #include "game.h"
 #include "ship.h"
 
-
 bool shouldShowMenu = true;
 int menuMouseHover = 0;
 int menuOptionSelected = 0;
@@ -12,7 +11,6 @@ Rectangle menuRect[menuSize];
 
 void showMenu()
 {
-
     initShip();
 
     for (int i = 0; i < menuSize; i++)//dibujo rectangulos menu

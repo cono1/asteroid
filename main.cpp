@@ -6,6 +6,7 @@ int main(void)
 {
 
     InitWindow(screenWidth, screenHeight, "asteroids");
+    loadTexture();
     showMenu();   
 
 }
