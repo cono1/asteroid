@@ -3,6 +3,7 @@
 struct SpaceShip
 {
 	Vector2 pos;
+	Vector2 newPos;
 	Vector2 pivot;
 	Vector2 dir;
 	Vector2 acceleration;

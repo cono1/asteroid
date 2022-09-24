@@ -20,6 +20,8 @@ void initShip()
 {
     ship.pos.x = screenWidth / 2;
     ship.pos.y = screenHeight / 2;
+    ship.newPos.x = ship.pos.x;
+    ship.newPos.y = ship.pos.y;
     //ship.width = 50;
     //ship.height = 50;
     ship.pivot.x = ship.pos.x;  //ship.width / 2;
@@ -32,8 +34,8 @@ void initShip()
 
 void drawShip()
 {
+    ship.pos = ship.newPos;
     DrawTextureEx(texture, ship.pos, ship.rotation, 0.1, RAYWHITE);
-    //DrawRectanglePro(ship, pivot, rotation, RAYWHITE);
 }
 
 void rotateShip()
@@ -58,8 +60,7 @@ void moveShip()
         ship.dir = Vector2Normalize(ship.dir);
         ship.acceleration.x += ship.dir.x;
         ship.acceleration.y += ship.dir.y;
-        ship.pos.x += ship.dir.x + ship.acceleration.x * GetFrameTime();
-        ship.pos.y += ship.dir.y + ship.acceleration.y * GetFrameTime();
     }
-    
-}
+    ship.newPos.x = ship.pos.x + ship.acceleration.x * GetFrameTime();
+    ship.newPos.y = ship.pos.y + ship.acceleration.y * GetFrameTime();
+} 
