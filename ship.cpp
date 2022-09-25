@@ -13,7 +13,7 @@ float angle;
 
 void loadTexture()
 {
-    texture = LoadTexture("conoShip.png");
+    texture = LoadTexture("Assets/conoShip.png");
 }
 
 void initShip()
@@ -46,9 +46,13 @@ void rotateShip()
     ship.dir.y = mousePos.y - ship.pivot.y;
     angle = (atan2f((float)ship.dir.y, (float)ship.dir.x)) * 180 / PI;
 
-    if (ship.dir.x < screenWidth / 2 && ship.dir.y < screenHeight / 2/*|| mousePos.x < 0 && mousePos.y < 0*/) //cuadrante dos y tres
+    if (ship.dir.x < screenWidth / 2 && ship.dir.y < screenHeight / 2 || mousePos.x < screenWidth / 2 && mousePos.y > screenHeight / 2) //cuadrante dos y tres
     {
         angle += 180;
+    }
+    if (ship.dir.x > screenWidth / 2 && ship.dir.y < screenHeight / 2)
+    {
+        angle += 360;
     }
     ship.rotation = angle;
 }

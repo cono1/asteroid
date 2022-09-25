@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include "game.h"
 #include "ship.h"
+#include "asteroids.h"
 
 bool shouldShowMenu = true;
 int menuMouseHover = 0;
@@ -12,6 +13,7 @@ Rectangle menuRect[menuSize];
 void showMenu()
 {
     initShip();
+    initAsteroids();
 
     for (int i = 0; i < menuSize; i++)//dibujo rectangulos menu
     {
@@ -81,9 +83,12 @@ void showMenu()
                 drawShip();
                 rotateShip();
                 moveShip();
+                generateAsteroids();
+                drawAsteroids();
                 break;
             case 1:
-                DrawText("CREDITOS", 10, 10, 50, LIGHTGRAY);
+                DrawText("Developed by: Daniela Gonzalez", 120, 300, 50, LIGHTGRAY);
+                DrawText("2D art by: Eros Khalil Beron", 120, 380, 50, LIGHTGRAY);
                 shouldShowMenu = false;
                 break;
             case 2:
@@ -91,7 +96,7 @@ void showMenu()
                 shouldShowMenu = false;
                 break;
             default:
-                DrawText("COSO", 10, 10, 50, LIGHTGRAY);
+                DrawText(" a", 10, 10, 50, LIGHTGRAY);
                 shouldShowMenu = false;
                 break;
             }

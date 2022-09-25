@@ -8,7 +8,6 @@ struct SpaceShip
 	Vector2 dir;
 	Vector2 acceleration;
 	float rotation;
-
 };
 
 void loadTexture();
