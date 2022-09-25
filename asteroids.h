@@ -10,7 +10,6 @@ struct Asteroid
 	Vector2 newPos;
 	Vector2 dir;
 	float scale;
-	Vector2 asteroids[maxAsteroids];
 	int amount;
 	float rotation;
 };

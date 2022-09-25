@@ -13,6 +13,10 @@ void initAsteroids()
 {
 	SetRandomSeed(time(NULL));
 	bigAsteroid.amount = GetRandomValue(0, maxAsteroids);
+	bigAsteroid.texture = LoadTexture("Assets/while(true).png");
+	bigAsteroid.scale = 0.15;
+	bigAsteroid.rotation = 0;
+
 	do
 	{
 		bigAsteroid.pos.x = screenWidth; //GetRandomValue(0, screenWidth);
@@ -23,20 +27,14 @@ void initAsteroids()
 		bigAsteroid.dir.x = GetRandomValue(-100, 100);
 		bigAsteroid.dir.y = GetRandomValue(-100, 100);
 	} while (bigAsteroid.dir.x < 50 && bigAsteroid.dir.x > -50 && bigAsteroid.dir.x < 50 && bigAsteroid.dir.x > -50);
-	bigAsteroid.texture = LoadTexture("Assets/while(true).png");
+	
 	bigAsteroid.newPos.x = bigAsteroid.pos.x;
 	bigAsteroid.newPos.y = bigAsteroid.pos.y;
-	bigAsteroid.scale = 0.15;
-	bigAsteroid.rotation = 0;
+
 
 	mediumAsteroid.texture = LoadTexture("Assets/onion.png");
 	smallAsteroid.texture = LoadTexture("Assets/cap.png");
 
-	//for (int i = 0; i < bigAsteroid.amount; i++)//do while no este en la misma pos que el player(??
-//{
-//	bigAsteroid.asteroids[i] = bigAsteroid.pos;
-//	bigAsteroid.dir[i]=
-//}.
 }
 
 void generateAsteroids()

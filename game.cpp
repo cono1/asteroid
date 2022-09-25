@@ -8,6 +8,8 @@ int menuMouseHover = 0;
 int menuOptionSelected = 0;
 const int menuSize = 3;
 Rectangle menuRect[menuSize];
+extern Asteroid bigAsteroid;
+extern SpaceShip ship;
 
 void showMenu()
 {
@@ -105,5 +107,11 @@ void showMenu()
         EndDrawing();
     }
     CloseWindow();
+}
+
+void checkCollisions()
+{
+    //ship.closestPointToAsteroid.x = bigAsteroid.pos.x;
+    
 }
 
