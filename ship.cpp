@@ -67,4 +67,22 @@ void moveShip()
     }
     ship.newPos.x = ship.pos.x + ship.acceleration.x * GetFrameTime();
     ship.newPos.y = ship.pos.y + ship.acceleration.y * GetFrameTime();
+    if (ship.newPos.x > screenWidth)
+    {
+        ship.newPos.x = 0;
+    }
+    if (ship.newPos.x < 0)
+    {
+        ship.newPos.x = screenWidth;
+    }
+
+    if (ship.newPos.y > screenHeight)
+    {
+        ship.newPos.y = 0;
+    }
+    if (ship.newPos.y < 0)
+    {
+        ship.newPos.y = screenHeight;
+    }
 } 
+

@@ -9,11 +9,11 @@ int menuOptionSelected = 0;
 const int menuSize = 3;
 Rectangle menuRect[menuSize];
 
-
 void showMenu()
 {
     initShip();
     initAsteroids();
+    generateAsteroids();
 
     for (int i = 0; i < menuSize; i++)//dibujo rectangulos menu
     {
@@ -83,8 +83,9 @@ void showMenu()
                 drawShip();
                 rotateShip();
                 moveShip();
-                generateAsteroids();
+                
                 drawAsteroids();
+                moveAsteoids();
                 break;
             case 1:
                 DrawText("Developed by: Daniela Gonzalez", 120, 300, 50, LIGHTGRAY);
