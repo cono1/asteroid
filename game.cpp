@@ -1,4 +1,5 @@
-#include <raylib.h>
+#include <iostream>
+
 #include "game.h"
 #include "ship.h"
 #include "asteroids.h"
@@ -8,22 +9,16 @@ int menuMouseHover = 0;
 int menuOptionSelected = 0;
 const int menuSize = 3;
 Rectangle menuRect[menuSize];
+Rectangle backRect;
 extern Asteroid bigAsteroid;
 extern SpaceShip ship;
 
-void showMenu()
+void gameLoop()
 {
     initShip();
     initAsteroids();
     generateAsteroids();
-
-    for (int i = 0; i < menuSize; i++)//dibujo rectangulos menu
-    {
-        menuRect[i].width = 250;
-        menuRect[i].height = 70;
-        menuRect[i].x = 350;
-        menuRect[i].y = 200 + menuRect[i].height * i + 50 * i;
-    }
+    createMenuButtons();
 
     while (!WindowShouldClose())
     {
@@ -85,14 +80,17 @@ void showMenu()
                 drawShip();
                 rotateShip();
                 moveShip();
-                
+                //shoot(ship);
                 drawAsteroids();
                 moveAsteoids();
+
+                drawBackButton(mousePos, shouldShowMenu);
                 break;
             case 1:
                 DrawText("Developed by: Daniela Gonzalez", 120, 300, 50, LIGHTGRAY);
                 DrawText("2D art by: Eros Khalil Beron", 120, 380, 50, LIGHTGRAY);
                 shouldShowMenu = false;
+                drawBackButton(mousePos, shouldShowMenu);
                 break;
             case 2:
                 DrawText("SALINEDO", 10, 10, 50, LIGHTGRAY);
@@ -109,9 +107,49 @@ void showMenu()
     CloseWindow();
 }
 
+void createMenuButtons()
+{
+    for (int i = 0; i < menuSize; i++)//rectangulos menu
+    {
+        menuRect[i].width = 250;
+        menuRect[i].height = 70;
+        menuRect[i].x = 350;
+        menuRect[i].y = 200 + menuRect[i].height * i + 50 * i;
+    }
+    backRect.x = 10;
+    backRect.y = 10;
+    backRect.width = 70;
+    backRect.height = 40;
+}
+
+void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
+{
+    DrawRectangle(backRect.x, backRect.y, backRect.width, backRect.height, RED);
+    if (CheckCollisionPointRec(mousePos, backRect))//si la pos del mouse esta dentro del rec
+    {
+        std::cout << "BACK";
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            shouldShowMenu = true;
+        }
+    }
+}
+
 void checkCollisions()
 {
     //ship.closestPointToAsteroid.x = bigAsteroid.pos.x;
     
+}
+
+void shoot(SpaceShip ship)
+{
+    Vector2 sizeBullet;
+    sizeBullet.x = 10;
+    sizeBullet.y = 10;
+    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+    {
+        std::cout << "shoot";
+        DrawRectangleV(ship.pos, sizeBullet, WHITE);
+    }
 }
 
