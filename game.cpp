@@ -5,6 +5,7 @@
 #include "asteroids.h"
 
 bool shouldShowMenu = true;
+bool exitWindow = false;
 int menuMouseHover = 0;
 int menuOptionSelected = 0;
 const int menuSize = 3;
@@ -20,10 +21,9 @@ void gameLoop()
     generateAsteroids();
     createMenuButtons();
 
-    while (!WindowShouldClose())
+    while (!WindowShouldClose() && !exitWindow)
     {
         Vector2 mousePos = GetMousePosition();
-
         for (int i = 0; i < menuSize; i++)
         {
             if (CheckCollisionPointRec(mousePos, menuRect[i]))//si la pos del mouse esta dentro del rec
@@ -39,6 +39,7 @@ void gameLoop()
         ClearBackground(BLACK);
         if (shouldShowMenu)
         {
+            SetExitKey(KEY_ESCAPE);
             for (int i = 0; i < menuSize; i++)
             {
                 DrawRectangle(menuRect[i].x, menuRect[i].y, menuRect[i].width, menuRect[i].height, RED);
@@ -76,6 +77,7 @@ void gameLoop()
             switch (menuOptionSelected)
             {
             case 0:
+                SetExitKey(0);
                 shouldShowMenu = false;         
                 drawShip();
                 rotateShip();
@@ -85,20 +87,25 @@ void gameLoop()
                 moveAsteoids();
 
                 drawBackButton(mousePos, shouldShowMenu);
+                if (IsKeyPressed(KEY_ESCAPE))
+                {
+                    shouldShowMenu = true;
+                }
                 break;
             case 1:
+                SetExitKey(0);
                 DrawText("Developed by: Daniela Gonzalez", 120, 300, 50, LIGHTGRAY);
                 DrawText("2D art by: Eros Khalil Beron", 120, 380, 50, LIGHTGRAY);
                 shouldShowMenu = false;
                 drawBackButton(mousePos, shouldShowMenu);
+                if (IsKeyPressed(KEY_ESCAPE))
+                {
+                    shouldShowMenu = true;
+                }
                 break;
             case 2:
-                DrawText("SALINEDO", 10, 10, 50, LIGHTGRAY);
-                shouldShowMenu = false;
-                break;
-            default:
-                DrawText(" a", 10, 10, 50, LIGHTGRAY);
-                shouldShowMenu = false;
+                exitWindow = true;
+                shouldShowMenu = false;          
                 break;
             }
         }
@@ -127,7 +134,6 @@ void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
     DrawRectangle(backRect.x, backRect.y, backRect.width, backRect.height, RED);
     if (CheckCollisionPointRec(mousePos, backRect))//si la pos del mouse esta dentro del rec
     {
-        std::cout << "BACK";
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             shouldShowMenu = true;
