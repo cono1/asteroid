@@ -9,4 +9,5 @@ void gameLoop();
 void createMenuButtons();
 void drawBackButton(Vector2 mousePos, bool& shouldShowMenu);
 void checkCollisions();
-void shoot();
+void initBullet(Vector2& bulletPos, Vector2& bulletSize);
+void shoot(Vector2& bulletPos);

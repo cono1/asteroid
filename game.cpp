@@ -3,7 +3,8 @@
 #include "game.h"
 #include "ship.h"
 #include "asteroids.h"
-
+Vector2 bulletSize;
+Vector2 bulletPos;
 bool shouldShowMenu = true;
 bool exitWindow = false;
 int menuMouseHover = 0;
@@ -18,6 +19,7 @@ void gameLoop()
 {
     initShip();
     initAsteroids();
+    initBullet(bulletPos, bulletSize);
     generateAsteroids();
     createMenuButtons();
 
@@ -82,10 +84,11 @@ void gameLoop()
                 drawShip();
                 rotateShip();
                 moveShip();
-                //shoot(ship);
+                shoot(bulletPos);
                 drawAsteroids();
                 moveAsteoids();
-
+                checkCollisions();
+                
                 drawBackButton(mousePos, shouldShowMenu);
                 if (IsKeyPressed(KEY_ESCAPE))
                 {
@@ -143,19 +146,53 @@ void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
 
 void checkCollisions()
 {
-    //ship.closestPointToAsteroid.x = bigAsteroid.pos.x;
-    
+    ship.closestPointToAsteroid.x = bigAsteroid.pos.x;
+    if (ship.closestPointToAsteroid.x < bigAsteroid.pos.x)//vertex
+    {
+        ship.closestPointToAsteroid.x = bigAsteroid.pos.x;
+    }
+    if (ship.closestPointToAsteroid.x > bigAsteroid.pos.x + bigAsteroid.scale)
+    {
+        ship.closestPointToAsteroid.x = bigAsteroid.pos.x + bigAsteroid.scale; 
+    }
+
+    //paddle1.closestPointToBall.y = ball.centerY;
+    //if (paddle1.closestPointToBall.y < paddle1.lowerVertexY)
+    //{
+    //    paddle1.closestPointToBall.y = paddle1.lowerVertexY;
+    //}
+    //if (paddle1.closestPointToBall.y > paddle1.lowerVertexY + paddle1.height)
+    //{
+    //    paddle1.closestPointToBall.y = paddle1.lowerVertexY + paddle1.height;
+    //}
+
+    float distance1 = sqrt(pow(bigAsteroid.pos.x - ship.closestPointToAsteroid.x, 2) + pow(bigAsteroid.pos.y - ship.closestPointToAsteroid.y, 2));
+    if (distance1 < bigAsteroid.scale/2) // Colisión detectada 
+    {
+        std::cout << "colision";
+    }
 }
 
-void shoot(SpaceShip ship)
+void initBullet(Vector2& bulletPos, Vector2& bulletSize)
 {
-    Vector2 sizeBullet;
-    sizeBullet.x = 10;
-    sizeBullet.y = 10;
+    bulletSize.x = 10;
+    bulletSize.y = 10;
+    bulletPos.x = ship.pos.x;
+    bulletPos.y = ship.pos.y;
+}
+
+void shoot(Vector2 &bulletPos)
+{
+
     if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
     {
-        std::cout << "shoot";
-        DrawRectangleV(ship.pos, sizeBullet, WHITE);
+       //std::cout << "shoot";
+        if (bulletPos.x != ship.dir.x && bulletPos.y != ship.dir.y)
+        {
+            DrawRectangleV(bulletPos, bulletSize, WHITE);
+            bulletPos.x+= ship.dir.x;
+            bulletPos.y+= ship.dir.y;
+        }
     }
 }
 

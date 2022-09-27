@@ -4,11 +4,11 @@ struct SpaceShip
 {
 	Vector2 pos;
 	Vector2 newPos;
+	Vector2 closestPointToAsteroid;
 	Vector2 pivot;
 	Vector2 dir;
 	Vector2 acceleration;
 	float rotation;
-	float closestPointToAsteroid;
 };
 
 void loadTexture();
