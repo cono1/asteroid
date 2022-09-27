@@ -65,7 +65,7 @@ void drawAsteroids()
 	{
 		bigAsteroid.newPos.y = screenHeight;
 	}
-	bigAsteroid.rotation += 0.05;
+	bigAsteroid.rotation += 0.05 * GetFrameTime();
 	bigAsteroid.pos.x = bigAsteroid.newPos.x;
 	bigAsteroid.pos.y = bigAsteroid.newPos.y;
 	DrawTextureEx(bigAsteroid.texture, bigAsteroid.pos, bigAsteroid.rotation, bigAsteroid.scale, RAYWHITE);

@@ -5,6 +5,7 @@
 #include "asteroids.h"
 Vector2 bulletSize;
 Vector2 bulletPos;
+Vector2 bulletNewPos;
 bool shouldShowMenu = true;
 bool exitWindow = false;
 int menuMouseHover = 0;
@@ -177,22 +178,23 @@ void initBullet(Vector2& bulletPos, Vector2& bulletSize)
 {
     bulletSize.x = 10;
     bulletSize.y = 10;
-    bulletPos.x = ship.pos.x;
-    bulletPos.y = ship.pos.y;
+    //bulletPos.x = ship.pos.x;
+    //bulletPos.y = ship.pos.y;
 }
 
 void shoot(Vector2 &bulletPos)
 {
+    bulletPos.x = bulletNewPos.x;
+    bulletPos.y = bulletNewPos.y;
 
     if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
     {
-       //std::cout << "shoot";
-        if (bulletPos.x != ship.dir.x && bulletPos.y != ship.dir.y)
-        {
-            DrawRectangleV(bulletPos, bulletSize, WHITE);
-            bulletPos.x+= ship.dir.x;
-            bulletPos.y+= ship.dir.y;
-        }
+        //std::cout << "x " << bulletPos.x;
+        //std::cout << " y " << bulletPos.y;
+
+        DrawRectangleV(bulletPos, bulletSize, WHITE);
+        bulletNewPos.x = ship.pos.x + ship.dir.x + GetMouseX() * GetFrameTime();
+        bulletNewPos.y = ship.pos.y + /*ship.dir.y +*/ GetMouseY() * GetFrameTime();
     }
 }
 
