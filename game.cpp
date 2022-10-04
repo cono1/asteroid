@@ -1,11 +1,10 @@
 #include <iostream>
-
 #include "game.h"
 #include "ship.h"
 #include "asteroids.h"
-Vector2 bulletSize;
-Vector2 bulletPos;
-Vector2 bulletNewPos;
+#include "bullets.h"
+
+//menu vars
 bool shouldShowMenu = true;
 bool exitWindow = false;
 int menuMouseHover = 0;
@@ -13,14 +12,16 @@ int menuOptionSelected = 0;
 const int menuSize = 3;
 Rectangle menuRect[menuSize];
 Rectangle backRect;
+
 extern Asteroid bigAsteroid;
 extern SpaceShip ship;
+extern Bullet bullet;
 
 void gameLoop()
 {
     initShip();
     initAsteroids();
-    initBullet(bulletPos, bulletSize);
+    initBullet();
     generateAsteroids();
     createMenuButtons();
 
@@ -81,15 +82,21 @@ void gameLoop()
             {
             case 0:
                 SetExitKey(0);
-                shouldShowMenu = false;         
+                shouldShowMenu = false;
+                //nave
                 drawShip();
                 rotateShip();
                 moveShip();
-                shoot(bulletPos);
+
+                //balas
+                shoot(bullet.pos);
+
+                //asteroides
                 drawAsteroids();
                 moveAsteoids();
                 checkCollisions();
-                
+
+                //menu             
                 drawBackButton(mousePos, shouldShowMenu);
                 if (IsKeyPressed(KEY_ESCAPE))
                 {
@@ -145,7 +152,7 @@ void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
     }
 }
 
-void checkCollisions()
+void checkCollisions() //(?
 {
     ship.closestPointToAsteroid.x = bigAsteroid.pos.x;
     if (ship.closestPointToAsteroid.x < bigAsteroid.pos.x)//vertex
@@ -173,28 +180,3 @@ void checkCollisions()
         std::cout << "colision";
     }
 }
-
-void initBullet(Vector2& bulletPos, Vector2& bulletSize)
-{
-    bulletSize.x = 10;
-    bulletSize.y = 10;
-    //bulletPos.x = ship.pos.x;
-    //bulletPos.y = ship.pos.y;
-}
-
-void shoot(Vector2 &bulletPos)
-{
-    bulletPos.x = bulletNewPos.x;
-    bulletPos.y = bulletNewPos.y;
-
-    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-    {
-        //std::cout << "x " << bulletPos.x;
-        //std::cout << " y " << bulletPos.y;
-
-        DrawRectangleV(bulletPos, bulletSize, WHITE);
-        bulletNewPos.x = ship.pos.x + ship.dir.x + GetMouseX() * GetFrameTime();
-        bulletNewPos.y = ship.pos.y + /*ship.dir.y +*/ GetMouseY() * GetFrameTime();
-    }
-}
-
