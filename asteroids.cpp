@@ -8,9 +8,12 @@ Asteroid bigAsteroid;
 Asteroid mediumAsteroid;
 Asteroid smallAsteroid;
 extern SpaceShip ship;
+Rectangle collisionBoxAsteroid;
+extern Rectangle collisionBoxShip;
 
 void initAsteroids()
 {
+	
 	SetRandomSeed(time(NULL));
 	bigAsteroid.amount = GetRandomValue(0, maxAsteroids);
 	bigAsteroid.texture = LoadTexture("Assets/while(true).png");
@@ -35,19 +38,23 @@ void initAsteroids()
 	mediumAsteroid.texture = LoadTexture("Assets/onion.png");
 	smallAsteroid.texture = LoadTexture("Assets/cap.png");
 
-}
-
-void generateAsteroids()
-{
-	//std::cout << " pos x " << bigAsteroid.pos.x;
-
+	collisionBoxAsteroid.x = bigAsteroid.pos.x;
+	collisionBoxAsteroid.y = bigAsteroid.pos.y;
+	collisionBoxAsteroid.width = 120;
+	collisionBoxAsteroid.height = 100;
 
 }
 
 void drawAsteroids()
 {
-	bigAsteroid.newPos.x = bigAsteroid.pos.x + bigAsteroid.dir.x * GetFrameTime();//moveAsteroids
-	bigAsteroid.newPos.y = bigAsteroid.pos.y + bigAsteroid.dir.y * GetFrameTime();//moveAsteroids
+
+	bigAsteroid.pos.x = bigAsteroid.newPos.x;
+	bigAsteroid.pos.y = bigAsteroid.newPos.y;
+	DrawTextureEx(bigAsteroid.texture, bigAsteroid.pos, bigAsteroid.rotation, bigAsteroid.scale, RAYWHITE);
+}
+
+void moveAsteroids()
+{
 	if (bigAsteroid.newPos.x > screenWidth)
 	{
 		bigAsteroid.newPos.x = 0;
@@ -66,13 +73,42 @@ void drawAsteroids()
 		bigAsteroid.newPos.y = screenHeight;
 	}
 	bigAsteroid.rotation += 0.05 * GetFrameTime();
-	bigAsteroid.pos.x = bigAsteroid.newPos.x;
-	bigAsteroid.pos.y = bigAsteroid.newPos.y;
-	DrawTextureEx(bigAsteroid.texture, bigAsteroid.pos, bigAsteroid.rotation, bigAsteroid.scale, RAYWHITE);
-}
-
-void moveAsteoids()
-{
+	bigAsteroid.newPos.x = bigAsteroid.pos.x + bigAsteroid.dir.x * GetFrameTime();//moveAsteroids
+	bigAsteroid.newPos.y = bigAsteroid.pos.y + bigAsteroid.dir.y * GetFrameTime();//moveAsteroids
 	/*bigAsteroid.newPos.x = bigAsteroid.pos.x + bigAsteroid.dir.x * GetFrameTime();
 	bigAsteroid.newPos.y = bigAsteroid.pos.y + bigAsteroid.dir.y * GetFrameTime();*/
+}
+
+void checkCollisions()
+{
+	collisionBoxAsteroid.x = bigAsteroid.pos.x /*+ 50*/;
+	collisionBoxAsteroid.y = bigAsteroid.pos.y /*+ 50*/;
+	DrawRectangleLines(collisionBoxAsteroid.x, collisionBoxAsteroid.y, collisionBoxAsteroid.width, collisionBoxAsteroid.height, YELLOW);
+
+
+	ship.closestPointToAsteroid.x = collisionBoxShip.x;
+	if (ship.closestPointToAsteroid.x < collisionBoxAsteroid.x + collisionBoxAsteroid.width)
+	{
+		ship.closestPointToAsteroid.x = collisionBoxAsteroid.x + collisionBoxAsteroid.width;
+	}
+	if (ship.closestPointToAsteroid.x > collisionBoxAsteroid.x)
+	{
+		ship.closestPointToAsteroid.x = collisionBoxAsteroid.x;
+	}
+
+	ship.closestPointToAsteroid.y = collisionBoxShip.y;
+	if (ship.closestPointToAsteroid.y < collisionBoxAsteroid.y)
+	{
+		ship.closestPointToAsteroid.y = collisionBoxAsteroid.y;
+	}
+	if (ship.closestPointToAsteroid.y > collisionBoxAsteroid.y + collisionBoxAsteroid.height)
+	{
+		ship.closestPointToAsteroid.y = collisionBoxAsteroid.y + collisionBoxAsteroid.height;
+	}
+
+	float distance = sqrt(pow(collisionBoxShip.x - ship.closestPointToAsteroid.x, 2) + pow(collisionBoxShip.y - ship.closestPointToAsteroid.y, 2));
+	if (distance < collisionBoxShip.height || distance < collisionBoxShip.width)
+	{
+		ship.isAlive = false;
+	}
 }

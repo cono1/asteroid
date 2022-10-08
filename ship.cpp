@@ -10,6 +10,7 @@ Vector2 mousePos;
 Texture2D texture;
 SpaceShip ship;
 float angle;
+Rectangle collisionBoxShip;
 
 void loadTexture()
 {
@@ -22,19 +23,24 @@ void initShip()
     ship.pos.y = screenHeight / 2;
     ship.newPos.x = ship.pos.x;
     ship.newPos.y = ship.pos.y;
-    //ship.width = 50;
-    //ship.height = 50;
-    ship.pivot.x = ship.pos.x;  //ship.width / 2;
-    ship.pivot.y = ship.pos.y;  //ship.height / 2;
+    ship.pivot.x = (ship.pos.x)/2;  //ship.width / 2;
+    ship.pivot.y = (ship.pos.y)/2;  //ship.height / 2;
     ship.acceleration.x = 0;
     ship.acceleration.y = 0;
     angle = 0;
     ship.rotation = 0;
+    ship.isAlive = true;
+
+    collisionBoxShip.width = 50;
+    collisionBoxShip.height = 50;
 }
 
 void drawShip()
 {
+    collisionBoxShip.x = ship.pos.x/*-50*/;
+    collisionBoxShip.y = ship.pos.y/*-50*/;
     ship.pos = ship.newPos;
+    DrawRectangleLines(collisionBoxShip.x, collisionBoxShip.y, collisionBoxShip.width, collisionBoxShip.height, YELLOW);
     DrawTextureEx(texture, ship.pos, ship.rotation, 0.1, RAYWHITE);
 }
 
@@ -42,8 +48,8 @@ void rotateShip()
 {
     mousePos.x = GetMouseX();
     mousePos.y= GetMouseY();
-    ship.dir.x = mousePos.x - ship.pivot.x;
-    ship.dir.y = mousePos.y - ship.pivot.y;
+    ship.dir.x = mousePos.x - ship.pos.x;
+    ship.dir.y = mousePos.y - ship.pos.y;
     angle = (atan2f((float)ship.dir.y, (float)ship.dir.x)) * 180 / PI;
 
     if (ship.dir.x < screenWidth / 2 && ship.dir.y < screenHeight / 2 || mousePos.x < screenWidth / 2 && mousePos.y > screenHeight / 2) //cuadrante dos y tres
@@ -85,4 +91,5 @@ void moveShip()
         ship.newPos.y = screenHeight;
     }
 } 
+
 

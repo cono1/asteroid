@@ -15,14 +15,12 @@ Rectangle backRect;
 
 extern Asteroid bigAsteroid;
 extern SpaceShip ship;
-extern Bullet bullet;
 
 void gameLoop()
 {
     initShip();
     initAsteroids();
     initBullet();
-    generateAsteroids();
     createMenuButtons();
 
     while (!WindowShouldClose() && !exitWindow)
@@ -76,7 +74,7 @@ void gameLoop()
                 }
             }
         }
-        else
+        else if(!shouldShowMenu && ship.isAlive)
         {
             switch (menuOptionSelected)
             {
@@ -89,13 +87,14 @@ void gameLoop()
                 moveShip();
 
                 //balas
-                shoot(bullet.pos);
+                shoot();
 
                 //asteroides
                 drawAsteroids();
-                moveAsteoids();
+                moveAsteroids();
                 checkCollisions();
 
+                
                 //menu             
                 drawBackButton(mousePos, shouldShowMenu);
                 if (IsKeyPressed(KEY_ESCAPE))
@@ -120,6 +119,7 @@ void gameLoop()
                 break;
             }
         }
+        showFinalMessage();
         EndDrawing();
     }
     CloseWindow();
@@ -152,31 +152,10 @@ void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
     }
 }
 
-void checkCollisions() //(?
+void showFinalMessage()
 {
-    ship.closestPointToAsteroid.x = bigAsteroid.pos.x;
-    if (ship.closestPointToAsteroid.x < bigAsteroid.pos.x)//vertex
+    if (!ship.isAlive)
     {
-        ship.closestPointToAsteroid.x = bigAsteroid.pos.x;
-    }
-    if (ship.closestPointToAsteroid.x > bigAsteroid.pos.x + bigAsteroid.scale)
-    {
-        ship.closestPointToAsteroid.x = bigAsteroid.pos.x + bigAsteroid.scale; 
-    }
-
-    //paddle1.closestPointToBall.y = ball.centerY;
-    //if (paddle1.closestPointToBall.y < paddle1.lowerVertexY)
-    //{
-    //    paddle1.closestPointToBall.y = paddle1.lowerVertexY;
-    //}
-    //if (paddle1.closestPointToBall.y > paddle1.lowerVertexY + paddle1.height)
-    //{
-    //    paddle1.closestPointToBall.y = paddle1.lowerVertexY + paddle1.height;
-    //}
-
-    float distance1 = sqrt(pow(bigAsteroid.pos.x - ship.closestPointToAsteroid.x, 2) + pow(bigAsteroid.pos.y - ship.closestPointToAsteroid.y, 2));
-    if (distance1 < bigAsteroid.scale/2) // Colisión detectada 
-    {
-        std::cout << "colision";
+        DrawText("You died", GetScreenWidth()/2, GetScreenHeight() / 2, 50, LIGHTGRAY);
     }
 }

@@ -15,6 +15,6 @@ struct Asteroid
 };
 
 void initAsteroids();
-void generateAsteroids();
 void drawAsteroids();
-void moveAsteoids();
+void moveAsteroids();
+void checkCollisions();
