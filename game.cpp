@@ -1,4 +1,6 @@
 #include <iostream>
+#include <ctime>
+#include <raylib.h>
 #include "game.h"
 #include "ship.h"
 #include "asteroids.h"
@@ -18,6 +20,7 @@ extern SpaceShip ship;
 
 void gameLoop()
 {
+    SetRandomSeed(time(NULL));
     initShip();
     initAsteroids();
     initBullet();
@@ -91,10 +94,8 @@ void gameLoop()
 
                 //asteroides
                 drawAsteroids();
-                moveAsteroids();
                 checkCollisions();
-
-                
+          
                 //menu             
                 drawBackButton(mousePos, shouldShowMenu);
                 if (IsKeyPressed(KEY_ESCAPE))

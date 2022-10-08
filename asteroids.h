@@ -10,11 +10,9 @@ struct Asteroid
 	Vector2 newPos;
 	Vector2 dir;
 	float scale;
-	int amount;
 	float rotation;
 };
 
 void initAsteroids();
 void drawAsteroids();
-void moveAsteroids();
 void checkCollisions();

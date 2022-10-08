@@ -2,6 +2,7 @@
 #include <iostream>
 #include <raylib.h>
 #include "raymath.h"
+#include "asteroids.h"
 #include "ship.h"
 #include "game.h"
 using namespace std;
@@ -37,9 +38,9 @@ void initShip()
 
 void drawShip()
 {
-    collisionBoxShip.x = ship.pos.x/*-50*/;
-    collisionBoxShip.y = ship.pos.y/*-50*/;
     ship.pos = ship.newPos;
+    collisionBoxShip.x = (ship.pos.x) / 2;
+    collisionBoxShip.y = ship.pos.y;
     DrawRectangleLines(collisionBoxShip.x, collisionBoxShip.y, collisionBoxShip.width, collisionBoxShip.height, YELLOW);
     DrawTextureEx(texture, ship.pos, ship.rotation, 0.1, RAYWHITE);
 }
@@ -91,5 +92,3 @@ void moveShip()
         ship.newPos.y = screenHeight;
     }
 } 
-
-
