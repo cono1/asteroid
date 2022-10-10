@@ -3,6 +3,7 @@
 #include "game.h"
 #include "asteroids.h"
 #include "ship.h"
+#include "bullets.h"
 
 Asteroid bigAsteroid[maxAsteroids];
 Asteroid mediumAsteroid;
@@ -10,6 +11,7 @@ Asteroid smallAsteroid;
 Rectangle collisionBoxAsteroid[maxAsteroids];
 extern SpaceShip ship;
 extern Rectangle collisionBoxShip;
+extern Bullet bullet;
 
 void initAsteroids()
 {
@@ -73,7 +75,7 @@ void drawAsteroids()
 	}
 }
 
-void checkCollisions()
+void checkAsteroidToShipCollisions()
 {
 	for (int i = 0; i < maxAsteroids; i++)
 	{
@@ -105,6 +107,40 @@ void checkCollisions()
 		if (distance < collisionBoxShip.height || distance < collisionBoxShip.width)
 		{
 			ship.isAlive = false;
+		}
+	}
+}
+
+void checkAsteroidToBulletCollision()
+{
+	for (int i = 0; i < maxAsteroids; i++)
+	{
+		DrawRectangleLines(bullet.pos.x, bullet.pos.y, bullet.size.x, bullet.size.y, YELLOW);
+		bullet.closestPointToAsteroid[i].x = bullet.pos.x;
+
+		if (bullet.closestPointToAsteroid[i].x < collisionBoxAsteroid[i].x + collisionBoxAsteroid[i].width)
+		{
+			bullet.closestPointToAsteroid[i].x = collisionBoxAsteroid[i].x + collisionBoxAsteroid[i].width;
+		}
+		if (bullet.closestPointToAsteroid[i].x > collisionBoxAsteroid[i].x)
+		{
+			bullet.closestPointToAsteroid[i].x = collisionBoxAsteroid[i].x;
+		}
+
+		bullet.closestPointToAsteroid[i].y = bullet.pos.y;
+		if (bullet.closestPointToAsteroid[i].y < collisionBoxAsteroid[i].y)
+		{
+			bullet.closestPointToAsteroid[i].y = collisionBoxAsteroid[i].y;
+		}
+		if (bullet.closestPointToAsteroid[i].y > collisionBoxAsteroid[i].y + collisionBoxAsteroid[i].height)
+		{
+			bullet.closestPointToAsteroid[i].y = collisionBoxAsteroid[i].y + collisionBoxAsteroid[i].height;
+		}
+
+		float distance = sqrt(pow(bullet.pos.x - bullet.closestPointToAsteroid[i].x, 2) + pow(bullet.pos.y - bullet.closestPointToAsteroid[i].y, 2));
+		if (distance < bullet.size.y || distance < bullet.size.x)
+		{
+			std::cout << "pium pium\n";
 		}
 	}
 }

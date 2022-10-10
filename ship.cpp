@@ -39,7 +39,7 @@ void initShip()
 void drawShip()
 {
     ship.pos = ship.newPos;
-    collisionBoxShip.x = (ship.pos.x) / 2;
+    collisionBoxShip.x = ship.pos.x-10;
     collisionBoxShip.y = ship.pos.y;
     DrawRectangleLines(collisionBoxShip.x, collisionBoxShip.y, collisionBoxShip.width, collisionBoxShip.height, YELLOW);
     DrawTextureEx(texture, ship.pos, ship.rotation, 0.1, RAYWHITE);

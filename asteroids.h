@@ -1,7 +1,7 @@
 #pragma once
 #include <raylib.h>
 
-const int maxAsteroids = 5;
+const int maxAsteroids = 2;
 
 struct Asteroid
 {
@@ -15,4 +15,5 @@ struct Asteroid
 
 void initAsteroids();
 void drawAsteroids();
-void checkCollisions();
+void checkAsteroidToShipCollisions();
+void checkAsteroidToBulletCollision();

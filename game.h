@@ -8,6 +8,6 @@ void gameLoop();
 void createMenuButtons();
 void drawBackButton(Vector2 mousePos, bool& shouldShowMenu);
 void showFinalMessage();
-//void checkCollisions();
+//void checkAsteroidToShipCollisions();
 //void initBullet(Vector2& bulletPos, Vector2& bulletSize);
 //void shoot(Vector2& bulletPos);
