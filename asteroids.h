@@ -11,9 +11,11 @@ struct Asteroid
 	Vector2 dir;
 	float scale;
 	float rotation;
+	bool isAlive;
 };
 
 void initAsteroids();
 void drawAsteroids();
 void checkAsteroidToShipCollisions();
 void checkAsteroidToBulletCollision();
+void divideAsteroids();

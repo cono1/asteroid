@@ -96,6 +96,7 @@ void gameLoop()
                 drawAsteroids();
                 checkAsteroidToShipCollisions();
                 checkAsteroidToBulletCollision();
+                divideAsteroids();
 
                 //menu             
                 drawBackButton(mousePos, shouldShowMenu);
