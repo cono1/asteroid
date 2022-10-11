@@ -45,12 +45,13 @@ void gameLoop()
         if (shouldShowMenu)
         {
             SetExitKey(KEY_ESCAPE);
+            DrawText("ANARCHY ON SPACE", 85, 100, 80, RAYWHITE);
             for (int i = 0; i < menuSize; i++)
             {
-                DrawRectangle(menuRect[i].x, menuRect[i].y, menuRect[i].width, menuRect[i].height, RED);
+                DrawRectangle(menuRect[i].x, menuRect[i].y, menuRect[i].width, menuRect[i].height, GOLD);
                 if (i == 0)
                 {
-                    DrawText("PLAY", menuRect[i].x + 35, menuRect[i].y + 10, 50, LIGHTGRAY);
+                    DrawText("PLAY", menuRect[i].x + 55, menuRect[i].y + 10, 50, BLACK);
                     if (menuMouseHover == 0 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
                     {
                         menuOptionSelected = 0;
@@ -59,7 +60,7 @@ void gameLoop()
                 }
                 if (i == 1)
                 {
-                    DrawText("CREDITS", menuRect[i].x, menuRect[i].y + 10, 50, LIGHTGRAY);
+                    DrawText("CREDITS", menuRect[i].x + 10, menuRect[i].y + 10, 50, BLACK);
                     if (menuMouseHover == 1 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
                     {
                         menuOptionSelected = 1;
@@ -68,7 +69,7 @@ void gameLoop()
                 }
                 if (i == 2)
                 {
-                    DrawText("EXIT", menuRect[i].x + 35, menuRect[i].y + 10, 50, LIGHTGRAY);
+                    DrawText("EXIT", menuRect[i].x + 60, menuRect[i].y + 10, 50, BLACK);
                     if (menuMouseHover == 2 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
                     {
                         menuOptionSelected = 2;
@@ -94,9 +95,9 @@ void gameLoop()
 
                 //asteroides
                 drawAsteroids();
-                /*checkAsteroidToShipCollisions();
+                checkAsteroidToShipCollisions();
                 checkAsteroidToBulletCollision();
-                divideAsteroids();*/
+                divideAsteroids();
 
                 //menu             
                 drawBackButton(mousePos, shouldShowMenu);
@@ -134,18 +135,18 @@ void createMenuButtons()
     {
         menuRect[i].width = 250;
         menuRect[i].height = 70;
-        menuRect[i].x = 350;
-        menuRect[i].y = 200 + menuRect[i].height * i + 50 * i;
+        menuRect[i].x = 380;
+        menuRect[i].y = 300 + menuRect[i].height * i + 50 * i;
     }
     backRect.x = 10;
     backRect.y = 10;
-    backRect.width = 70;
-    backRect.height = 40;
+    backRect.width = 50;
+    backRect.height = 25;
 }
 
 void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
 {
-    DrawRectangle(backRect.x, backRect.y, backRect.width, backRect.height, RED);
+    DrawRectangle(backRect.x, backRect.y, backRect.width, backRect.height, GOLD);
     if (CheckCollisionPointRec(mousePos, backRect))//si la pos del mouse esta dentro del rec
     {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
