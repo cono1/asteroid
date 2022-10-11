@@ -94,9 +94,9 @@ void gameLoop()
 
                 //asteroides
                 drawAsteroids();
-                checkAsteroidToShipCollisions();
+                /*checkAsteroidToShipCollisions();
                 checkAsteroidToBulletCollision();
-                divideAsteroids();
+                divideAsteroids();*/
 
                 //menu             
                 drawBackButton(mousePos, shouldShowMenu);
