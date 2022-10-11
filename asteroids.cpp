@@ -44,8 +44,14 @@ void initAsteroids()
 		mediumAsteroid[i].texture = LoadTexture("Assets/onion.png");
 		mediumAsteroid[i].scale = 0.085;
 		mediumAsteroid[i].rotation = 0;
+		mediumAsteroid[i].dir.x = GetRandomValue(-100, 100);
+		mediumAsteroid[i].dir.y = GetRandomValue(-100, 100);
+
+		std::cout << "mediumasteroid dir x: " << mediumAsteroid[i].dir.x << std::endl;
+		std::cout << "mediumasteroid dir y: " << mediumAsteroid[i].dir.y << std::endl;
 	}
 
+	
 	smallAsteroid.texture = LoadTexture("Assets/cap.png");
 }
 
@@ -168,33 +174,31 @@ void checkAsteroidToBulletCollision()
 
 void divideAsteroids()
 {
-	int cont = 0;
 	for (int i = 0; i < maxAsteroids*2; i++)
 	{
 		for (int j = 0; j < maxAsteroids; j++)
 		{
+
 			if (!bigAsteroid[j].isAlive)
 			{
-				/*if (mediumAsteroid[i].pos.x == 0)
-				{*/
-				
-				if (cont < 2)
-				{
-					cont++;
-					std::cout << cont << "cont\n";
-					mediumAsteroid[cont].pos.x = bigAsteroid[j].pos.x + 100;
-					mediumAsteroid[cont].pos.y = bigAsteroid[j].pos.y + 10;//agregar dir random (?
 
-				}
-				//}
-				//else
-				//{
-				//	mediumAsteroid[i+1].pos.x = bigAsteroid[i].pos.x + 10;
-				//	mediumAsteroid[i+1].pos.y = bigAsteroid[i].pos.y + 10;
-				//}
+				mediumAsteroid[i].pos.x = bigAsteroid[j].pos.x ;
+				mediumAsteroid[i].pos.y = bigAsteroid[j].pos.y ;
+				mediumAsteroid[j].pos.x = bigAsteroid[j].pos.x + mediumAsteroid[j].dir.x +150;
+				mediumAsteroid[j].pos.y = bigAsteroid[j].pos.y  + mediumAsteroid[j].dir.y +50;
+
+				mediumAsteroid[i].newPos.x = mediumAsteroid[i].pos.x + mediumAsteroid[i].dir.x * GetFrameTime();
+				mediumAsteroid[i].newPos.y = mediumAsteroid[i].pos.y + mediumAsteroid[i].dir.y * GetFrameTime();
+				mediumAsteroid[i].pos.x = mediumAsteroid[i].newPos.x;
+				mediumAsteroid[i].pos.y = mediumAsteroid[i].newPos.y;
+
+				mediumAsteroid[j].newPos.x = mediumAsteroid[j].pos.x + mediumAsteroid[j].dir.x * GetFrameTime();
+				mediumAsteroid[j].newPos.y = mediumAsteroid[j].pos.y + mediumAsteroid[j].dir.y * GetFrameTime();
+				mediumAsteroid[j].pos.x = mediumAsteroid[j].newPos.x;
+				mediumAsteroid[j].pos.y = mediumAsteroid[j].newPos.y;
+
 				DrawTextureEx(mediumAsteroid[i].texture, mediumAsteroid[i].pos, mediumAsteroid[i].rotation, mediumAsteroid[i].scale, RAYWHITE);
 			}
 		}
-	}
-	
+	}	
 }

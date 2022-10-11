@@ -12,6 +12,8 @@ Texture2D texture;
 SpaceShip ship;
 float angle;
 Rectangle collisionBoxShip;
+Rectangle textureBox;
+Rectangle shipBox;
 
 void loadTexture()
 {
@@ -24,33 +26,47 @@ void initShip()
     ship.pos.y = screenHeight / 2;
     ship.newPos.x = ship.pos.x;
     ship.newPos.y = ship.pos.y;
-    ship.pivot.x = (ship.pos.x)/2;  //ship.width / 2;
-    ship.pivot.y = (ship.pos.y)/2;  //ship.height / 2;
+    ship.pivot.x = ship.pos.x/2;  //ship.width / 2;
+    ship.pivot.y = ship.pos.y/2;  //ship.height / 2;
     ship.acceleration.x = 0;
     ship.acceleration.y = 0;
     angle = 0;
     ship.rotation = 0;
     ship.isAlive = true;
 
-    collisionBoxShip.width = 50;
-    collisionBoxShip.height = 50;
+    collisionBoxShip.width = 80;
+    collisionBoxShip.height = 80;
+
+    shipBox.x = 250;
+    shipBox.y = 190;
+    shipBox.width = 900;
+    shipBox.height = 900;
+
+    textureBox.width = 100;
+    textureBox.height = 100;
 }
 
 void drawShip()
 {
     ship.pos = ship.newPos;
-    collisionBoxShip.x = ship.pos.x-10;
-    collisionBoxShip.y = ship.pos.y;
+    textureBox.x = ship.pos.x;
+    textureBox.y = ship.pos.y;
+    collisionBoxShip.x = textureBox.x- collisionBoxShip.width/2;
+    collisionBoxShip.y = textureBox.y - collisionBoxShip.height/2;
+
+    ship.pivot.x = collisionBoxShip.width / 2;
+    ship.pivot.y = collisionBoxShip.height / 2;
     DrawRectangleLines(collisionBoxShip.x, collisionBoxShip.y, collisionBoxShip.width, collisionBoxShip.height, YELLOW);
-    DrawTextureEx(texture, ship.pos, ship.rotation, 0.1, RAYWHITE);
+
+    DrawTexturePro(texture, shipBox, textureBox, ship.pivot, ship.rotation, WHITE);
 }
 
 void rotateShip()
 {
     mousePos.x = GetMouseX();
     mousePos.y= GetMouseY();
-    ship.dir.x = mousePos.x - ship.pos.x;
-    ship.dir.y = mousePos.y - ship.pos.y;
+    ship.dir.x = ship.pos.x - mousePos.x;
+    ship.dir.y = ship.pos.y - mousePos.y;
     angle = (atan2f((float)ship.dir.y, (float)ship.dir.x)) * 180 / PI;
 
     if (ship.dir.x < screenWidth / 2 && ship.dir.y < screenHeight / 2 || mousePos.x < screenWidth / 2 && mousePos.y > screenHeight / 2) //cuadrante dos y tres
@@ -69,8 +85,8 @@ void moveShip()
     if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
     {
         ship.dir = Vector2Normalize(ship.dir);
-        ship.acceleration.x += ship.dir.x;
-        ship.acceleration.y += ship.dir.y;
+        ship.acceleration.x -= ship.dir.x;
+        ship.acceleration.y -= ship.dir.y;
     }
     ship.newPos.x = ship.pos.x + ship.acceleration.x * GetFrameTime();
     ship.newPos.y = ship.pos.y + ship.acceleration.y * GetFrameTime();
