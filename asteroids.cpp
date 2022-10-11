@@ -178,14 +178,15 @@ void divideAsteroids()
 				/*if (mediumAsteroid[i].pos.x == 0)
 				{*/
 				
-				if (cont < 2)
-				{
+				//if (cont < 2)
+				//{
 					cont++;
 					std::cout << cont << "cont\n";
-					mediumAsteroid[cont].pos.x = bigAsteroid[j].pos.x + 100;
-					mediumAsteroid[cont].pos.y = bigAsteroid[j].pos.y + 10;//agregar dir random (?
-
-				}
+					mediumAsteroid[cont].pos.x = bigAsteroid[j].pos.x ;
+					mediumAsteroid[cont].pos.y = bigAsteroid[j].pos.y ;//agregar dir random (?
+					mediumAsteroid[cont+1].pos.x = bigAsteroid[j].pos.x + 100;
+					mediumAsteroid[cont+1].pos.y = bigAsteroid[j].pos.y + 10;
+				//}
 				//}
 				//else
 				//{
