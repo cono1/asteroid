@@ -23,7 +23,7 @@ void shoot()
         bullet.dir.x = GetMouseX() - ship.pos.x;
         bullet.dir.y = GetMouseY() - ship.pos.y;
         bullet.dir = Vector2Normalize(bullet.dir);
-        bullet.speed = 700;
+        bullet.speed = 800;
     }
 
     if (!bullet.isAlive)

@@ -13,6 +13,7 @@ extern SpaceShip ship;
 extern Rectangle collisionBoxShip;
 extern Bullet bullet;
 int score = 0;
+int cont = 0;
 
 void initAsteroids()
 {
@@ -52,7 +53,6 @@ void initAsteroids()
 		std::cout << "mediumasteroid dir y: " << mediumAsteroid[i].dir.y << std::endl;
 	}
 
-	
 	smallAsteroid.texture = LoadTexture("Assets/cap.png");
 }
 
@@ -87,6 +87,12 @@ void drawAsteroids()
 			bigAsteroid[i].scale = 0;
 			collisionBoxAsteroid[i].width = 0;
 			collisionBoxAsteroid[i].height = 0;
+		}
+		else
+		{
+			bigAsteroid[i].scale = 0.15;
+			collisionBoxAsteroid[i].width = 120;
+			collisionBoxAsteroid[i].height = 100;
 		}
 		DrawTextureEx(bigAsteroid[i].texture, bigAsteroid[i].pos, bigAsteroid[i].rotation, bigAsteroid[i].scale, RAYWHITE);
 	}
@@ -132,14 +138,14 @@ void checkAsteroidToShipCollisions()
 					ship.isAlive = false;
 				}
 				ship.collide = true;
-			}
-			
+			}		
 		}
 	}
 }
 
 void checkAsteroidToBulletCollision()
 {
+	cont++;
 	for (int i = 0; i < maxAsteroids; i++)
 	{
 		//DrawRectangleLines(bullet.pos.x, bullet.pos.y, bullet.size.x, bullet.size.y, YELLOW);
@@ -179,6 +185,11 @@ void checkAsteroidToBulletCollision()
 			// score += 10;
 			//}
 		}
+		if (!bigAsteroid[i].isAlive && cont > 5500)
+		{
+			bigAsteroid[i].isAlive = true;
+			cont = 0;
+		}
 	}
 }
 
@@ -198,7 +209,7 @@ void divideAsteroids()
 				//mediumAsteroid[j].pos.y += bigAsteroid[j].pos.y  + mediumAsteroid[j].dir.y +50;
 
 
-				DrawTextureEx(mediumAsteroid[i].texture, mediumAsteroid[i].pos, mediumAsteroid[i].rotation, mediumAsteroid[i].scale, RAYWHITE);
+				//DrawTextureEx(mediumAsteroid[i].texture, mediumAsteroid[i].pos, mediumAsteroid[i].rotation, mediumAsteroid[i].scale, RAYWHITE);
 			}
 		}
 	}	
