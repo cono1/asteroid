@@ -15,7 +15,9 @@ const int menuSize = 3;
 Rectangle menuRect[menuSize];
 Rectangle backRect;
 
-extern Rectangle collisionBoxShip;
+
+extern int score;
+int maxScore = 100;
 extern Asteroid bigAsteroid;
 extern SpaceShip ship;
 
@@ -55,7 +57,7 @@ void gameLoop()
         {
             drawMenu();
         }
-        else if(!shouldShowMenu && ship.isAlive)
+        else if(!shouldShowMenu && ship.isAlive && score < maxScore)
         {
             switch (menuOptionSelected)
             {
@@ -63,6 +65,7 @@ void gameLoop()
                 SetExitKey(0);
                 shouldShowMenu = false;
                 DrawText(TextFormat(" HP: %i", ship.lives), screenWidth - 150, 10, 40, WHITE);
+                DrawText(TextFormat(" SCORE: %i", score), 50, 10, 40, WHITE);
                 //nave
                 drawShip();
                 rotateShip();
@@ -73,7 +76,7 @@ void gameLoop()
 
                 //asteroides
                 drawAsteroids();
-                checkAsteroidToShipCollisions(ship.pos, collisionBoxShip, ship.dir);
+                checkAsteroidToShipCollisions();
                 checkAsteroidToBulletCollision();
                 divideAsteroids();
 
@@ -181,6 +184,10 @@ void showFinalMessage()
     if (!ship.isAlive)
     {
         DrawText("You died", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
+    }
+    if (score >= maxScore)
+    {
+        DrawText("You won!", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
     }
 }
 

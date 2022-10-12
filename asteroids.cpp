@@ -12,6 +12,7 @@ Rectangle collisionBoxAsteroid[maxAsteroids];
 extern SpaceShip ship;
 extern Rectangle collisionBoxShip;
 extern Bullet bullet;
+int score = 0;
 
 void initAsteroids()
 {
@@ -91,7 +92,7 @@ void drawAsteroids()
 	}
 }
 
-void checkAsteroidToShipCollisions(Vector2& pos, Rectangle& collisionBoxShip, Vector2& dir)
+void checkAsteroidToShipCollisions()
 {	
 	ship.collide = false;
 	for (int i = 0; i < maxAsteroids; i++)
@@ -125,15 +126,12 @@ void checkAsteroidToShipCollisions(Vector2& pos, Rectangle& collisionBoxShip, Ve
 			float distance = sqrt(pow(collisionBoxShip.x - ship.closestPointToAsteroid[i].x, 2) + pow(collisionBoxShip.y - ship.closestPointToAsteroid[i].y, 2));
 			if (distance < collisionBoxShip.height || distance < collisionBoxShip.width)
 			{
-				std::cout << "lives" << ship.lives << std::endl;
 				ship.lives -= 1;
-
 				if (ship.lives < 1)
 				{
 					ship.isAlive = false;
 				}
 				ship.collide = true;
-
 			}
 			
 		}
@@ -173,10 +171,12 @@ void checkAsteroidToBulletCollision()
 			{
 				std::cout << "Colision astroide grande\n";
 				bigAsteroid[i].isAlive = false;
+				score += 5;
 			}
 			//if (collisionBoxAsteroid[i].x == mediumAsteroid.pos.x + 50)
 			//{
 			//	std::cout << "Colision astroide mediano\n";
+			// score += 10;
 			//}
 		}
 	}

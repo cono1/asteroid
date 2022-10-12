@@ -16,6 +16,6 @@ struct Asteroid
 
 void initAsteroids();
 void drawAsteroids();
-void checkAsteroidToShipCollisions(Vector2& pos, Rectangle& collisionBoxShip, Vector2& dir);
+void checkAsteroidToShipCollisions();
 void checkAsteroidToBulletCollision();
 void divideAsteroids();
