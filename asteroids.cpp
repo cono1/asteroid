@@ -26,7 +26,7 @@ void initAsteroids()
 		{
 			bigAsteroid[i].pos.x = GetRandomValue(0, screenWidth); 
 			bigAsteroid[i].pos.y = GetRandomValue(0, screenHeight);
-		} while (bigAsteroid[i].pos.x == collisionBoxShip.x || bigAsteroid[i].pos.y == collisionBoxShip.y);
+		} while (bigAsteroid[i].pos.x == collisionBoxShip.x || bigAsteroid[i].pos.x == collisionBoxShip.x + collisionBoxShip.width || bigAsteroid[i].pos.y == collisionBoxShip.y || bigAsteroid[i].pos.y == collisionBoxShip.y + collisionBoxShip.height);
 		do
 		{
 			bigAsteroid[i].dir.x = GetRandomValue(-100, 100);
@@ -91,8 +91,9 @@ void drawAsteroids()
 	}
 }
 
-void checkAsteroidToShipCollisions()
-{
+void checkAsteroidToShipCollisions(Vector2& pos, Rectangle& collisionBoxShip, Vector2& dir)
+{	
+	ship.collide = false;
 	for (int i = 0; i < maxAsteroids; i++)
 	{
 		if (bigAsteroid[i].isAlive)
@@ -124,8 +125,17 @@ void checkAsteroidToShipCollisions()
 			float distance = sqrt(pow(collisionBoxShip.x - ship.closestPointToAsteroid[i].x, 2) + pow(collisionBoxShip.y - ship.closestPointToAsteroid[i].y, 2));
 			if (distance < collisionBoxShip.height || distance < collisionBoxShip.width)
 			{
-				ship.isAlive = false;
+				std::cout << "lives" << ship.lives << std::endl;
+				ship.lives -= 1;
+
+				if (ship.lives < 1)
+				{
+					ship.isAlive = false;
+				}
+				ship.collide = true;
+
 			}
+			
 		}
 	}
 }
@@ -181,43 +191,13 @@ void divideAsteroids()
 
 			if (!bigAsteroid[j].isAlive)
 			{
-<<<<<<< HEAD
-				/*if (mediumAsteroid[i].pos.x == 0)
-				{*/
-				
-				//if (cont < 2)
-				//{
-					cont++;
-					std::cout << cont << "cont\n";
-					mediumAsteroid[cont].pos.x = bigAsteroid[j].pos.x ;
-					mediumAsteroid[cont].pos.y = bigAsteroid[j].pos.y ;//agregar dir random (?
-					mediumAsteroid[cont+1].pos.x = bigAsteroid[j].pos.x + 100;
-					mediumAsteroid[cont+1].pos.y = bigAsteroid[j].pos.y + 10;
-				//}
-				//}
-				//else
-				//{
-				//	mediumAsteroid[i+1].pos.x = bigAsteroid[i].pos.x + 10;
-				//	mediumAsteroid[i+1].pos.y = bigAsteroid[i].pos.y + 10;
-				//}
-=======
 
-				mediumAsteroid[i].pos.x = bigAsteroid[j].pos.x ;
-				mediumAsteroid[i].pos.y = bigAsteroid[j].pos.y ;
-				mediumAsteroid[j].pos.x = bigAsteroid[j].pos.x + mediumAsteroid[j].dir.x +150;
-				mediumAsteroid[j].pos.y = bigAsteroid[j].pos.y  + mediumAsteroid[j].dir.y +50;
+				//mediumAsteroid[i].pos.x = bigAsteroid[j].pos.x + mediumAsteroid[i].dir.x;
+				mediumAsteroid[i].pos.y = bigAsteroid[j].pos.y + mediumAsteroid[i].dir.y;
+			    mediumAsteroid[j].pos.x = bigAsteroid[j].pos.x + mediumAsteroid[j].dir.x + 150;
+				//mediumAsteroid[j].pos.y += bigAsteroid[j].pos.y  + mediumAsteroid[j].dir.y +50;
 
-				mediumAsteroid[i].newPos.x = mediumAsteroid[i].pos.x + mediumAsteroid[i].dir.x * GetFrameTime();
-				mediumAsteroid[i].newPos.y = mediumAsteroid[i].pos.y + mediumAsteroid[i].dir.y * GetFrameTime();
-				mediumAsteroid[i].pos.x = mediumAsteroid[i].newPos.x;
-				mediumAsteroid[i].pos.y = mediumAsteroid[i].newPos.y;
 
-				mediumAsteroid[j].newPos.x = mediumAsteroid[j].pos.x + mediumAsteroid[j].dir.x * GetFrameTime();
-				mediumAsteroid[j].newPos.y = mediumAsteroid[j].pos.y + mediumAsteroid[j].dir.y * GetFrameTime();
-				mediumAsteroid[j].pos.x = mediumAsteroid[j].newPos.x;
-				mediumAsteroid[j].pos.y = mediumAsteroid[j].newPos.y;
-
->>>>>>> 2b80e34ae8afbf86da6c3f7c67f96808ae11ed06
 				DrawTextureEx(mediumAsteroid[i].texture, mediumAsteroid[i].pos, mediumAsteroid[i].rotation, mediumAsteroid[i].scale, RAYWHITE);
 			}
 		}

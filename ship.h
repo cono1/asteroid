@@ -9,12 +9,15 @@ struct SpaceShip
 	Vector2 pivot;
 	Vector2 dir;
 	Vector2 acceleration;
+	int lives;
 	float rotation;
 	bool isAlive;
+	bool collide;
 };
 
 void loadTexture();
 void initShip();
+void restartShipPos();
 void drawShip();
 void rotateShip();
 void moveShip();

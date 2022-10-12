@@ -15,6 +15,7 @@ Rectangle collisionBoxShip;
 Rectangle textureBox;
 Rectangle shipBox;
 
+
 void loadTexture()
 {
     texture = LoadTexture("Assets/conoShip.png");
@@ -31,6 +32,7 @@ void initShip()
     ship.acceleration.x = 0;
     ship.acceleration.y = 0;
     angle = 0;
+    ship.lives = 3;
     ship.rotation = 0;
     ship.isAlive = true;
 
@@ -44,6 +46,18 @@ void initShip()
 
     textureBox.width = 100;
     textureBox.height = 100;
+}
+
+void restartShipPos()
+{
+    ship.pos.x = screenWidth / 2;
+    ship.pos.y = screenHeight / 2;
+    ship.newPos.x = ship.pos.x;
+    ship.newPos.y = ship.pos.y;
+    ship.dir.x = 0;
+    ship.dir.y = 0;
+    ship.acceleration.x = 0;
+    ship.acceleration.y = 0;
 }
 
 void drawShip()

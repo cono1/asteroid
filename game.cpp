@@ -15,12 +15,15 @@ const int menuSize = 3;
 Rectangle menuRect[menuSize];
 Rectangle backRect;
 
+extern Rectangle collisionBoxShip;
 extern Asteroid bigAsteroid;
 extern SpaceShip ship;
 
 void gameLoop()
 {
     SetRandomSeed(time(NULL));
+    InitWindow(screenWidth, screenHeight, "asteroids");
+    loadTexture();
     initShip();
     initAsteroids();
     initBullet();
@@ -28,6 +31,10 @@ void gameLoop()
 
     while (!WindowShouldClose() && !exitWindow)
     {
+        if (ship.collide)
+        {
+            restartShipPos();
+        }
         Vector2 mousePos = GetMousePosition();
         for (int i = 0; i < menuSize; i++)
         {
@@ -37,46 +44,16 @@ void gameLoop()
                 break;
             }
             else
+            {
                 menuMouseHover = -1;
+            }
         }
 
         BeginDrawing();
         ClearBackground(BLACK);
         if (shouldShowMenu)
         {
-            SetExitKey(KEY_ESCAPE);
-            DrawText("ANARCHY ON SPACE", 85, 100, 80, RAYWHITE);
-            for (int i = 0; i < menuSize; i++)
-            {
-                DrawRectangle(menuRect[i].x, menuRect[i].y, menuRect[i].width, menuRect[i].height, GOLD);
-                if (i == 0)
-                {
-                    DrawText("PLAY", menuRect[i].x + 55, menuRect[i].y + 10, 50, BLACK);
-                    if (menuMouseHover == 0 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-                    {
-                        menuOptionSelected = 0;
-                        shouldShowMenu = false;
-                    }
-                }
-                if (i == 1)
-                {
-                    DrawText("CREDITS", menuRect[i].x + 10, menuRect[i].y + 10, 50, BLACK);
-                    if (menuMouseHover == 1 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-                    {
-                        menuOptionSelected = 1;
-                        shouldShowMenu = false;
-                    }
-                }
-                if (i == 2)
-                {
-                    DrawText("EXIT", menuRect[i].x + 60, menuRect[i].y + 10, 50, BLACK);
-                    if (menuMouseHover == 2 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-                    {
-                        menuOptionSelected = 2;
-                        shouldShowMenu = false;
-                    }
-                }
-            }
+            drawMenu();
         }
         else if(!shouldShowMenu && ship.isAlive)
         {
@@ -85,6 +62,7 @@ void gameLoop()
             case 0:
                 SetExitKey(0);
                 shouldShowMenu = false;
+                DrawText(TextFormat(" HP: %i", ship.lives), screenWidth - 150, 10, 40, WHITE);
                 //nave
                 drawShip();
                 rotateShip();
@@ -95,7 +73,7 @@ void gameLoop()
 
                 //asteroides
                 drawAsteroids();
-                checkAsteroidToShipCollisions();
+                checkAsteroidToShipCollisions(ship.pos, collisionBoxShip, ship.dir);
                 checkAsteroidToBulletCollision();
                 divideAsteroids();
 
@@ -107,15 +85,7 @@ void gameLoop()
                 }
                 break;
             case 1:
-                SetExitKey(0);
-                DrawText("Developed by: Daniela Gonzalez", 120, 300, 50, LIGHTGRAY);
-                DrawText("2D art by: Eros Khalil Beron", 120, 380, 50, LIGHTGRAY);
-                shouldShowMenu = false;
-                drawBackButton(mousePos, shouldShowMenu);
-                if (IsKeyPressed(KEY_ESCAPE))
-                {
-                    shouldShowMenu = true;
-                }
+                showCredits(mousePos);
                 break;
             case 2:
                 exitWindow = true;
@@ -156,10 +126,62 @@ void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
     }
 }
 
+void drawMenu()
+{
+    SetExitKey(KEY_ESCAPE);
+    DrawText("ANARCHY ON SPACE", 85, 100, 80, RAYWHITE);
+    for (int i = 0; i < menuSize; i++)
+    {
+        DrawRectangle(menuRect[i].x, menuRect[i].y, menuRect[i].width, menuRect[i].height, GOLD);
+        if (i == 0)
+        {
+            DrawText("PLAY", menuRect[i].x + 55, menuRect[i].y + 10, 50, BLACK);
+            if (menuMouseHover == 0 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                menuOptionSelected = 0;
+                shouldShowMenu = false;
+            }
+        }
+        if (i == 1)
+        {
+            DrawText("CREDITS", menuRect[i].x + 10, menuRect[i].y + 10, 50, BLACK);
+            if (menuMouseHover == 1 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                menuOptionSelected = 1;
+                shouldShowMenu = false;
+            }
+        }
+        if (i == 2)
+        {
+            DrawText("EXIT", menuRect[i].x + 60, menuRect[i].y + 10, 50, BLACK);
+            if (menuMouseHover == 2 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                menuOptionSelected = 2;
+                shouldShowMenu = false;
+            }
+        }
+    }
+}
+
+void showCredits(Vector2 mousePos)
+{
+    SetExitKey(0);
+    DrawText("Developed by: Daniela Gonzalez", 120, 300, 50, LIGHTGRAY);
+    DrawText("2D art by: Eros Khalil Beron", 120, 380, 50, LIGHTGRAY);
+    shouldShowMenu = false;
+    drawBackButton(mousePos, shouldShowMenu);
+    if (IsKeyPressed(KEY_ESCAPE))
+    {
+        shouldShowMenu = true;
+    }
+}
+
 void showFinalMessage()
 {
     if (!ship.isAlive)
     {
-        DrawText("You died", GetScreenWidth()/2, GetScreenHeight() / 2, 50, LIGHTGRAY);
+        DrawText("You died", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
     }
 }
+
+// rectangulos menuhttps://www.raylib.com/examples/textures/loader.html?name=textures_mouse_painting
