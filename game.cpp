@@ -15,7 +15,7 @@ const int menuSize = 3;
 Rectangle menuRect[menuSize];
 Rectangle backRect;
 
-
+Music gameMusic;
 extern int score;
 int maxScore = 100;
 extern Asteroid bigAsteroid;
@@ -25,6 +25,8 @@ void gameLoop()
 {
     SetRandomSeed(time(NULL));
     InitWindow(screenWidth, screenHeight, "asteroids");
+    //gameMusic = LoadMusicStream(const char* fileName);
+    //UnloadMusicStream(gameMusic);(?
     loadTexture();
     initShip();
     initAsteroids();
@@ -36,6 +38,7 @@ void gameLoop()
         if (ship.collide)
         {
             restartShipPos();
+            initAsteroids();
         }
         Vector2 mousePos = GetMousePosition();
         for (int i = 0; i < menuSize; i++)
