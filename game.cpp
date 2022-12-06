@@ -5,18 +5,10 @@
 
 #include "raylib.h"
 
+#include "menu.h"
 #include "ship.h"
 #include "asteroids.h"
 #include "bullets.h"
-
-//menu vars
-bool shouldShowMenu = true;
-bool exitWindow = false;
-int menuMouseHover = 0;
-int menuOptionSelected = 0;
-const int menuSize = 3;
-Rectangle menuRect[menuSize];
-Rectangle backRect;
 
 Music gameMusic;
 extern int score;
@@ -26,6 +18,8 @@ extern SpaceShip ship;
 
 void gameLoop()
 {
+    bool shouldShowMenu = true;
+    bool exitWindow = false;
     int textSize = 40;
     int textPositionY = 10;
     SetRandomSeed(time(NULL));
@@ -45,29 +39,16 @@ void gameLoop()
             restartShipPos();
             initAsteroids();
         }
-        Vector2 mousePos = GetMousePosition();
-        for (int i = 0; i < menuSize; i++)
-        {
-            if (CheckCollisionPointRec(mousePos, menuRect[i]))//si la pos del mouse esta dentro del rec
-            {
-                menuMouseHover = i;
-                break;
-            }
-            else
-            {
-                menuMouseHover = -1;
-            }
-        }
 
         BeginDrawing();
         ClearBackground(BLACK);
         if (shouldShowMenu)
         {
-            drawMenu();
+            drawMenu(shouldShowMenu);
         }
         else if(!shouldShowMenu && ship.isAlive && score < maxScore)
         {
-            switch (menuOptionSelected)
+            switch (getMenuOptionSelected())
             {
             case 0:
                 SetExitKey(0);
@@ -89,14 +70,14 @@ void gameLoop()
                 divideAsteroids();
 
                 //menu             
-                drawBackButton(mousePos, shouldShowMenu);
+                drawBackButton(shouldShowMenu);
                 if (IsKeyPressed(KEY_ESCAPE))
                 {
                     shouldShowMenu = true;
                 }
                 break;
             case 1:
-                showCredits(mousePos);
+                showCredits(shouldShowMenu);
                 break;
             case 2:
                 exitWindow = true;
@@ -126,85 +107,6 @@ void gameLoop()
     unloadTexture();
     unloadTextures();
     CloseWindow();
-}
-
-void createMenuButtons()
-{
-    for (int i = 0; i < menuSize; i++)//rectangulos menu
-    {
-        menuRect[i].width = 250;
-        menuRect[i].height = 70;
-        menuRect[i].x = 380;
-        menuRect[i].y = 300 + menuRect[i].height * i + 50 * i;
-    }
-    backRect.x = 10;
-    backRect.y = 10;
-    backRect.width = 50;
-    backRect.height = 25;
-}
-
-void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
-{
-    DrawRectangle(backRect.x, backRect.y, backRect.width, backRect.height, GOLD);
-    if (CheckCollisionPointRec(mousePos, backRect))//si la pos del mouse esta dentro del rec
-    {
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        {
-            shouldShowMenu = true;
-        }
-    }
-}
-
-void drawMenu()
-{
-    int textSize = 50;
-    SetExitKey(KEY_ESCAPE);
-    DrawText("ANARCHY ON SPACE", 85, 100, 80, RAYWHITE);
-    for (int i = 0; i < menuSize; i++)
-    {
-        DrawRectangle(menuRect[i].x, menuRect[i].y, menuRect[i].width, menuRect[i].height, GOLD);
-        if (i == 0)
-        {
-            DrawText("PLAY", menuRect[i].x + 55, menuRect[i].y + 10, textSize, BLACK);
-            if (menuMouseHover == 0 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-            {
-                menuOptionSelected = 0;
-                shouldShowMenu = false;
-            }
-        }
-        if (i == 1)
-        {
-            DrawText("CREDITS", menuRect[i].x + 10, menuRect[i].y + 10, textSize, BLACK);
-            if (menuMouseHover == 1 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-            {
-                menuOptionSelected = 1;
-                shouldShowMenu = false;
-            }
-        }
-        if (i == 2)
-        {
-            DrawText("EXIT", menuRect[i].x + 60, menuRect[i].y + 10, textSize, BLACK);
-            if (menuMouseHover == 2 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-            {
-                menuOptionSelected = 2;
-                shouldShowMenu = false;
-            }
-        }
-    }
-}
-
-void showCredits(Vector2 mousePos)
-{
-    int textSize = 50;
-    SetExitKey(0);
-    DrawText("Developed by: Daniela Gonzalez", 120, 300, textSize, LIGHTGRAY);
-    DrawText("2D art by: Eros Khalil Beron", 120, 380, textSize, LIGHTGRAY);
-    shouldShowMenu = false;
-    drawBackButton(mousePos, shouldShowMenu);
-    if (IsKeyPressed(KEY_ESCAPE))
-    {
-        shouldShowMenu = true;
-    }
 }
 
 void showFinalMessage()

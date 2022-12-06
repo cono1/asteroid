@@ -1,54 +1,23 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(444,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(445,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  asteroids.cpp
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(23,30): warning C4305: '=': truncamiento de 'double' a 'float'
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(29,41): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(30,41): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(34,41): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(35,41): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(47,31): warning C4305: '=': truncamiento de 'double' a 'float'
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(49,40): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(50,40): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(120,131): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(120,100): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(120,73): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(120,46): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-  bullets.cpp
-  game.cpp
-C:\Users\Administrador\Desktop\asteroid\game.cpp(28,23): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(145,67): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(145,51): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(145,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(145,27): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(162,83): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(162,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(162,49): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(162,34): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(165,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(165,44): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(174,67): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(174,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(183,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\game.cpp(183,44): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-  main.cpp
-  ship.cpp
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(35,18): error C2065: 'screenWidth': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(36,18): error C2065: 'screenHeight': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(62,18): error C2065: 'screenWidth': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(63,18): error C2065: 'screenHeight': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(82,104): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(82,80): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(82,60): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(82,40): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(89,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(90,26): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(95,22): error C2065: 'screenWidth': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(95,54): error C2065: 'screenHeight': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(95,87): error C2065: 'screenWidth': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(95,119): error C2065: 'screenHeight': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(99,22): error C2065: 'screenWidth': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(99,54): error C2065: 'screenHeight': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(116,25): error C2065: 'screenWidth': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(122,25): error C2065: 'screenWidth': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(125,25): error C2065: 'screenHeight': identificador no declarado
-C:\Users\Administrador\Desktop\asteroid\ship.cpp(131,25): error C2065: 'screenHeight': identificador no declarado
+  menu.cpp
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(29,67): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(29,51): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(29,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(29,27): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(60,83): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(60,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(60,49): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(60,34): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(63,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(63,44): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(72,67): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(72,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(81,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\menu.cpp(81,44): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  Asteroids_GonzalezDaniela.vcxproj -> C:\Users\Administrador\Desktop\asteroid\bin\Asteroids_GonzalezDaniela.exe
+  Assets\cap.png
+  Assets\conoShip.png
+  Assets\onion.png
+  Assets\while(true).png
+  4 archivo(s) copiado(s)
