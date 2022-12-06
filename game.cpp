@@ -23,6 +23,8 @@ extern SpaceShip ship;
 
 void gameLoop()
 {
+    int textSize = 40;
+    int textPositionY = 10;
     SetRandomSeed(time(NULL));
     InitWindow(screenWidth, screenHeight, "asteroids");
     //gameMusic = LoadMusicStream(const char* fileName);
@@ -67,8 +69,8 @@ void gameLoop()
             case 0:
                 SetExitKey(0);
                 shouldShowMenu = false;
-                DrawText(TextFormat(" HP: %i", ship.lives), screenWidth - 150, 10, 40, WHITE);
-                DrawText(TextFormat(" SCORE: %i", score), 50, 10, 40, WHITE);
+                DrawText(TextFormat(" HP: %i", ship.lives), screenWidth - 150, textPositionY, textSize, WHITE);
+                DrawText(TextFormat(" SCORE: %i", score), 50, textPositionY, textSize, WHITE);
                 //nave
                 drawShip();
                 rotateShip();
@@ -152,6 +154,7 @@ void drawBackButton(Vector2 mousePos, bool& shouldShowMenu)
 
 void drawMenu()
 {
+    int textSize = 50;
     SetExitKey(KEY_ESCAPE);
     DrawText("ANARCHY ON SPACE", 85, 100, 80, RAYWHITE);
     for (int i = 0; i < menuSize; i++)
@@ -159,7 +162,7 @@ void drawMenu()
         DrawRectangle(menuRect[i].x, menuRect[i].y, menuRect[i].width, menuRect[i].height, GOLD);
         if (i == 0)
         {
-            DrawText("PLAY", menuRect[i].x + 55, menuRect[i].y + 10, 50, BLACK);
+            DrawText("PLAY", menuRect[i].x + 55, menuRect[i].y + 10, textSize, BLACK);
             if (menuMouseHover == 0 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
             {
                 menuOptionSelected = 0;
@@ -168,7 +171,7 @@ void drawMenu()
         }
         if (i == 1)
         {
-            DrawText("CREDITS", menuRect[i].x + 10, menuRect[i].y + 10, 50, BLACK);
+            DrawText("CREDITS", menuRect[i].x + 10, menuRect[i].y + 10, textSize, BLACK);
             if (menuMouseHover == 1 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
             {
                 menuOptionSelected = 1;
@@ -177,7 +180,7 @@ void drawMenu()
         }
         if (i == 2)
         {
-            DrawText("EXIT", menuRect[i].x + 60, menuRect[i].y + 10, 50, BLACK);
+            DrawText("EXIT", menuRect[i].x + 60, menuRect[i].y + 10, textSize, BLACK);
             if (menuMouseHover == 2 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
             {
                 menuOptionSelected = 2;
@@ -189,9 +192,10 @@ void drawMenu()
 
 void showCredits(Vector2 mousePos)
 {
+    int textSize = 50;
     SetExitKey(0);
-    DrawText("Developed by: Daniela Gonzalez", 120, 300, 50, LIGHTGRAY);
-    DrawText("2D art by: Eros Khalil Beron", 120, 380, 50, LIGHTGRAY);
+    DrawText("Developed by: Daniela Gonzalez", 120, 300, textSize, LIGHTGRAY);
+    DrawText("2D art by: Eros Khalil Beron", 120, 380, textSize, LIGHTGRAY);
     shouldShowMenu = false;
     drawBackButton(mousePos, shouldShowMenu);
     if (IsKeyPressed(KEY_ESCAPE))
@@ -202,17 +206,20 @@ void showCredits(Vector2 mousePos)
 
 void showFinalMessage()
 {
+    int firstTextSize = 30;
+    int secondTextSize = 50;
+
     if (!ship.isAlive)
     {
-        DrawText("Press ENTER  to play again", GetScreenWidth() / 3, GetScreenHeight() / 4, 30, LIGHTGRAY);
-        DrawText("Press ESC to go to menu", GetScreenWidth() / 3, GetScreenHeight() / 3, 30, LIGHTGRAY);
-        DrawText("You died", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
+        DrawText("Press ENTER  to play again", GetScreenWidth() / 3, GetScreenHeight() / 4, firstTextSize, LIGHTGRAY);
+        DrawText("Press ESC to go to menu", GetScreenWidth() / 3, GetScreenHeight() / 3, firstTextSize, LIGHTGRAY);
+        DrawText("You died", GetScreenWidth() / 2, GetScreenHeight() / 2, secondTextSize, LIGHTGRAY);
     }
     if (score >= maxScore)
     {
-        DrawText("Press ENTER  to play again", GetScreenWidth() / 3, GetScreenHeight() / 4, 30, LIGHTGRAY);
-        DrawText("Press ESC to go to menu", GetScreenWidth() / 3, GetScreenHeight() / 3, 30, LIGHTGRAY);
-        DrawText("You won!", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
+        DrawText("Press ENTER  to play again", GetScreenWidth() / 3, GetScreenHeight() / 4, firstTextSize, LIGHTGRAY);
+        DrawText("Press ESC to go to menu", GetScreenWidth() / 3, GetScreenHeight() / 3, firstTextSize, LIGHTGRAY);
+        DrawText("You won!", GetScreenWidth() / 2, GetScreenHeight() / 2, secondTextSize, LIGHTGRAY);
     }
 }
 

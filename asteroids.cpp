@@ -155,6 +155,8 @@ void checkAsteroidToShipCollisions()
 
 void checkAsteroidToBulletCollision()
 {
+	int respawnTime = 5500;
+	int deleteTime = 10000;
 	cont++;
 	for (int i = 0; i < maxAsteroids; i++)
 	{
@@ -194,11 +196,11 @@ void checkAsteroidToBulletCollision()
 				std::cout << "Colision astroide mediano\n";
 				score += 10;
 				mediumAsteroid.isAlive = false;
-				if (cont > 10000)
+				if (cont > deleteTime)
 					mediumAsteroid.scale = 0;
 			}
 		}
-		if (!bigAsteroid[i].isAlive && cont > 5500 && !mediumAsteroid.isAlive)
+		if (!bigAsteroid[i].isAlive && cont > respawnTime && !mediumAsteroid.isAlive)
 		{
 			bigAsteroid[i].isAlive = true;
 			cont = 0;
