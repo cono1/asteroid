@@ -9,8 +9,6 @@ Vector2 mousePosMenu;
 
 void createMenuButtons()
 {
-
-
     for (int i = 0; i < menuSize; i++)//rectangulos menu
     {
         menuRect[i].width = 250;
@@ -26,6 +24,7 @@ void createMenuButtons()
 
 void drawBackButton(bool& shouldShowMenu)
 {
+    mousePosMenu = GetMousePosition();
     DrawRectangle(backRect.x, backRect.y, backRect.width, backRect.height, GOLD);
     if (CheckCollisionPointRec(mousePosMenu, backRect))//si la pos del mouse esta dentro del rec
     {
