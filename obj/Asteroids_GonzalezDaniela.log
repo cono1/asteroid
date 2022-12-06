@@ -1,0 +1,54 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(444,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(445,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  asteroids.cpp
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(23,30): warning C4305: '=': truncamiento de 'double' a 'float'
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(29,41): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(30,41): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(34,41): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(35,41): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(47,31): warning C4305: '=': truncamiento de 'double' a 'float'
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(49,40): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(50,40): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(120,131): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(120,100): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(120,73): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\asteroids.cpp(120,46): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  bullets.cpp
+  game.cpp
+C:\Users\Administrador\Desktop\asteroid\game.cpp(26,23): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(143,67): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(143,51): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(143,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(143,27): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(159,83): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(159,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(159,49): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(159,34): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(162,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(162,44): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(171,67): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(171,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(180,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\game.cpp(180,44): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  main.cpp
+  ship.cpp
+C:\Users\Administrador\Desktop\asteroid\ship.cpp(78,104): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\ship.cpp(78,80): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\ship.cpp(78,60): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\ship.cpp(78,40): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\ship.cpp(85,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Administrador\Desktop\asteroid\ship.cpp(86,26): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Generando código...
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+raylib.lib(rcore.obj) : warning LNK4099: no se encontró PDB 'raylib.pdb' con 'raylib.lib(rcore.obj)' o en 'C:\Users\Administrador\Desktop\asteroid\bin\raylib.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+raylib.lib(rglfw.obj) : warning LNK4099: no se encontró PDB 'raylib.pdb' con 'raylib.lib(rglfw.obj)' o en 'C:\Users\Administrador\Desktop\asteroid\bin\raylib.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+raylib.lib(rshapes.obj) : warning LNK4099: no se encontró PDB 'raylib.pdb' con 'raylib.lib(rshapes.obj)' o en 'C:\Users\Administrador\Desktop\asteroid\bin\raylib.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+raylib.lib(rtext.obj) : warning LNK4099: no se encontró PDB 'raylib.pdb' con 'raylib.lib(rtext.obj)' o en 'C:\Users\Administrador\Desktop\asteroid\bin\raylib.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+raylib.lib(rtextures.obj) : warning LNK4099: no se encontró PDB 'raylib.pdb' con 'raylib.lib(rtextures.obj)' o en 'C:\Users\Administrador\Desktop\asteroid\bin\raylib.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+raylib.lib(utils.obj) : warning LNK4099: no se encontró PDB 'raylib.pdb' con 'raylib.lib(utils.obj)' o en 'C:\Users\Administrador\Desktop\asteroid\bin\raylib.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+  Asteroids_GonzalezDaniela.vcxproj -> C:\Users\Administrador\Desktop\asteroid\bin\Asteroids_GonzalezDaniela.exe
+  Assets\cap.png
+  Assets\conoShip.png
+  Assets\onion.png
+  Assets\while(true).png
+  4 archivo(s) copiado(s)

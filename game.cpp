@@ -26,7 +26,7 @@ void gameLoop()
     SetRandomSeed(time(NULL));
     InitWindow(screenWidth, screenHeight, "asteroids");
     //gameMusic = LoadMusicStream(const char* fileName);
-    //UnloadMusicStream(gameMusic);(?
+    //UnloadMusicStream(gameMusic);
     loadTexture();
     initShip();
     initAsteroids();
@@ -118,6 +118,8 @@ void gameLoop()
 
         EndDrawing();
     }
+    unloadTexture();
+    unloadTextures();
     CloseWindow();
 }
 
@@ -203,12 +205,13 @@ void showFinalMessage()
     if (!ship.isAlive)
     {
         DrawText("Press ENTER  to play again", GetScreenWidth() / 3, GetScreenHeight() / 4, 30, LIGHTGRAY);
-        DrawText("Press ESC  to go to menu", GetScreenWidth() / 3, GetScreenHeight() / 3, 30, LIGHTGRAY);
+        DrawText("Press ESC to go to menu", GetScreenWidth() / 3, GetScreenHeight() / 3, 30, LIGHTGRAY);
         DrawText("You died", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
     }
     if (score >= maxScore)
     {
         DrawText("Press ENTER  to play again", GetScreenWidth() / 3, GetScreenHeight() / 4, 30, LIGHTGRAY);
+        DrawText("Press ESC to go to menu", GetScreenWidth() / 3, GetScreenHeight() / 3, 30, LIGHTGRAY);
         DrawText("You won!", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
     }
 }

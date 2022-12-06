@@ -16,6 +16,7 @@ struct SpaceShip
 };
 
 void loadTexture();
+void unloadTexture();
 void initShip();
 void restartShipPos();
 void drawShip();

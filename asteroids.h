@@ -15,6 +15,7 @@ struct Asteroid
 };
 
 void initAsteroids();
+void unloadTextures();
 void drawAsteroids();
 void checkAsteroidToShipCollisions();
 void checkAsteroidToBulletCollision();

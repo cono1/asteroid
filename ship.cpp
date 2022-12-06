@@ -21,6 +21,11 @@ void loadTexture()
     texture = LoadTexture("Assets/conoShip.png");
 }
 
+void unloadTexture()
+{
+    UnloadTexture(texture);
+}
+
 void initShip()
 {
     ship.pos.x = screenWidth / 2;

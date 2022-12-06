@@ -53,7 +53,17 @@ void initAsteroids()
 		std::cout << "mediumasteroid dir y: " << mediumAsteroid.dir.y << std::endl;
 	//}
 
-	smallAsteroid.texture = LoadTexture("Assets/cap.png");
+	//smallAsteroid.texture = LoadTexture("Assets/cap.png");
+}
+
+void unloadTextures()
+{
+	for (int i = 0; i < maxAsteroids; i++)
+	{
+		UnloadTexture(bigAsteroid[i].texture);
+	}
+
+	UnloadTexture(mediumAsteroid.texture);
 }
 
 void drawAsteroids()
