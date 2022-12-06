@@ -85,15 +85,15 @@ void drawAsteroids()
 		if (!bigAsteroid[i].isAlive)
 		{
 			bigAsteroid[i].scale = 0;
-			collisionBoxAsteroid[i].width = 0;
-			collisionBoxAsteroid[i].height = 0;
+			collisionBoxAsteroid[i].x = mediumAsteroid.pos.x;
+			collisionBoxAsteroid[i].y = mediumAsteroid.pos.y;
 		}
-		else
-		{
-			bigAsteroid[i].scale = 0.15;
-			collisionBoxAsteroid[i].width = 150;
-			collisionBoxAsteroid[i].height = 100;
-		}
+		//else
+		//{
+		//	bigAsteroid[i].scale = 0.15;
+		//	collisionBoxAsteroid[i].width = 150;
+		//	collisionBoxAsteroid[i].height = 100;
+		//}
 		DrawTextureEx(bigAsteroid[i].texture, bigAsteroid[i].pos, bigAsteroid[i].rotation, bigAsteroid[i].scale, RAYWHITE);
 	}
 }
@@ -173,16 +173,20 @@ void checkAsteroidToBulletCollision()
 		float distance = sqrt(pow(bullet.pos.x - bullet.closestPointToAsteroid[i].x, 2) + pow(bullet.pos.y - bullet.closestPointToAsteroid[i].y, 2));
 		if (distance < bullet.size.y || distance < bullet.size.x)
 		{
-			if (collisionBoxAsteroid[i].x == bigAsteroid[i].pos.x + 50)
+			if (collisionBoxAsteroid[i].x == bigAsteroid[i].pos.x + 50 && bigAsteroid[i].isAlive)
 			{
 				bigAsteroid[i].isAlive = false;
 				score += 5;
 			}
-			//if (collisionBoxAsteroid[i].x == mediumAsteroid.pos.x + 50)
-			//{
-			//	std::cout << "Colision astroide mediano\n";
-			// score += 10;
-			//}
+
+			if (collisionBoxAsteroid[i].x >= mediumAsteroid.pos.x || collisionBoxAsteroid[i].x <= mediumAsteroid.pos.x + 50)
+			{
+				std::cout << "Colision astroide mediano\n";
+				score += 10;
+				mediumAsteroid.isAlive = false;
+				if (cont > 10000)
+					mediumAsteroid.scale = 0;
+			}
 		}
 		if (!bigAsteroid[i].isAlive && cont > 5500 && !mediumAsteroid.isAlive)
 		{
@@ -204,5 +208,4 @@ void divideAsteroids()
 			DrawTextureEx(mediumAsteroid.texture, mediumAsteroid.pos, mediumAsteroid.rotation, mediumAsteroid.scale, RAYWHITE);
 		}
 	}
-
 }
