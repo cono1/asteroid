@@ -24,6 +24,8 @@ void shoot()
         bullet.dir.y = GetMouseY() - ship.pos.y;
         bullet.dir = Vector2Normalize(bullet.dir);
         bullet.speed = 800;
+        bullet.pos.x = ship.pos.x;
+        bullet.pos.y = ship.pos.y;
     }
 
     if (!bullet.isAlive)
@@ -31,14 +33,15 @@ void shoot()
         return;
     }
 
+
+    if (bullet.pos.x <= 0 || bullet.pos.x >= GetScreenWidth() || bullet.pos.y <= 0 || bullet.pos.x >= GetScreenWidth())
+    {
+       /* bullet.pos.x = ship.pos.x;
+        bullet.pos.y = ship.pos.y;*/
+        bullet.isAlive = false;
+    }
+
     bullet.pos.x += bullet.dir.x * bullet.speed * GetFrameTime(); 
     bullet.pos.y += bullet.dir.y * bullet.speed * GetFrameTime(); 
     DrawRectangleV(bullet.pos, bullet.size, WHITE);
-
-    if (bullet.pos.x < 0 || bullet.pos.x > GetScreenWidth() || bullet.pos.y < 0 || bullet.pos.x > GetScreenWidth())
-    {
-        bullet.pos.x = ship.pos.x;
-        bullet.pos.y = ship.pos.y;
-        bullet.isAlive = false;
-    }
 }
