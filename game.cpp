@@ -100,6 +100,14 @@ void gameLoop()
             }
         }
         showFinalMessage();
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            restartShipPos();
+            initAsteroids();
+            shouldShowMenu = false;
+            ship.isAlive = true;
+            score = 0;
+        }
         EndDrawing();
     }
     CloseWindow();
@@ -186,10 +194,12 @@ void showFinalMessage()
 {
     if (!ship.isAlive)
     {
+        DrawText("Press ENTER  to play again", GetScreenWidth() / 3, GetScreenHeight() / 4, 30, LIGHTGRAY);
         DrawText("You died", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
     }
     if (score >= maxScore)
     {
+        DrawText("Press ENTER  to play again", GetScreenWidth() / 3, GetScreenHeight() / 4, 30, LIGHTGRAY);
         DrawText("You won!", GetScreenWidth() / 2, GetScreenHeight() / 2, 50, LIGHTGRAY);
     }
 }

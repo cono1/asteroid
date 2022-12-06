@@ -33,11 +33,8 @@ void shoot()
         return;
     }
 
-
     if (bullet.pos.x <= 0 || bullet.pos.x >= GetScreenWidth() || bullet.pos.y <= 0 || bullet.pos.x >= GetScreenWidth())
     {
-       /* bullet.pos.x = ship.pos.x;
-        bullet.pos.y = ship.pos.y;*/
         bullet.isAlive = false;
     }
 
