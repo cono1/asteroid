@@ -1,10 +1,14 @@
+#include "ship.h"
+
 #include <cmath>
 #include <iostream>
-#include <raylib.h>
+
+#include "raylib.h"
 #include "raymath.h"
+
 #include "asteroids.h"
-#include "ship.h"
 #include "game.h"
+
 using namespace std;
 
 Vector2 mousePos;

@@ -1,7 +1,10 @@
+#include "game.h"
+
 #include <iostream>
 #include <ctime>
-#include <raylib.h>
-#include "game.h"
+
+#include "raylib.h"
+
 #include "ship.h"
 #include "asteroids.h"
 #include "bullets.h"

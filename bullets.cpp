@@ -1,5 +1,7 @@
-#include <iostream>
 #include "bullets.h"
+
+#include <iostream>
+
 #include "ship.h"
 
 Bullet bullet; 

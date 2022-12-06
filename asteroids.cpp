@@ -1,7 +1,9 @@
+#include "asteroids.h"
+
 #include <ctime>
 #include <iostream>
+
 #include "game.h"
-#include "asteroids.h"
 #include "ship.h"
 #include "bullets.h"
 

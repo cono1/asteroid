@@ -1,6 +1,7 @@
 #pragma once
-#include <raylib.h>
-#include <raymath.h>
+#include "raylib.h"
+#include "raymath.h"
+
 #include "asteroids.h"
 
 struct Bullet
